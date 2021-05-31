@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns="hhtp:://w3.org/1999/xhtml"
+	  xmlns:th="http://www.thymeleaf.org">
+	<head>
+	  <title>Taco Cloud App</title>
+	  <link rel="stylesheet" th:href="@{/styles.css}" />
+	</head>
+	
+	<body>
+	
+	  <form method="POST" th:action="@{/orders}" th:object="${order}">
+	    <h1>Zamów przygotowane taco</h1>
+	    
+	    <!--  <img th:src="@{/images/TacoCloud.png" />-->
+	    <a th:href="@{/design}" id="another">Przygotuj kolejne taco</a><br/>
+	    
+	    <div th:if="${#fields.hasErrors()}">
+	      <span class="validationError">
+	      Usuñ wymienione problemy i spróbuj ponownie.
+	      </span>
+	    </div>
+	      
+	    <h3>Adres dostarczenia taco...</h3>
+	    <label for="name">Imiê i nazwisko:</label>
+	    <input type="text" th:field="*{name}"/>
+	    <span class="validationError"
+	    	th:if="${#fields.hasErrors('ccNumber')}"
+	    	th:errors="*{ccNumber}">B³¹d numeru karty kredytowej
+	    </span>
+	    <br/>
+	    
+	    <label for="name">Ulica:</label>
+	    <input type="text" th:field="*{street}"/>
+	    <br/>
+	    
+	    <label for="name">Miejscowoœæ:</label>
+	    <input type="text" th:field="*{city}"/>
+	    <br/>
+	    
+	    <label for="name">Województwo:</label>
+	    <input type="text" th:field="*{state}"/>
+	    <br/>
+	    
+	    <label for="name">Kod pocztowy:</label>
+	    <input type="text" th:field="*{zip}"/>
+	    <br/>
+	    
+	    <h3>Sposób p³atnoœci...</h3>
+	    <label for="ccNumber">Numer karty kredytowej:</label>
+	    <input type="text" th:field="*{ccNumber}" />
+	    <span class="validationError"
+	    	th:if="${#fields.hasErrors('ccNumber')}"
+	    	th:errors="*{ccNumber}">B³¹d numeru karty kredytowej
+	    </span>
+	    <br/>
+	    
+	    <label for="ccNumber">Data wa¿noœci:</label>
+	    <input type="text" th:field="*{ccNumber}" />
+	    <br/>
+	    
+	    <label for="ccNumber">Kod CVV:</label>
+	    <input type="text" th:field="*{ccNumber}" />
+	    <br/>
+	    
+	    <input type="submit" value="Z³ó¿ zamówienie"/>
+	  </form>
+	  
+	</body>
+</html>
